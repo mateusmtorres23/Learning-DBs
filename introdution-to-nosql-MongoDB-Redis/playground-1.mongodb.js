@@ -6,7 +6,7 @@ db.destinations.insertOne({})
 
 db.users.insertOne({
     name: 'John Doe',
-    email: 'jhon.doe@example.com',
+    email: 'john.doe@example.com',
     age: 30,
     birthDate: '1995-01-05'
 })
@@ -62,3 +62,28 @@ db.users.updateOne({name:'John Castle'}, {$set: {age: 30}})
 db.users.updateMany({name:'John Castle'}, {$set: {age: 33}})
 
 db.users.find({name:'John Castle'})
+
+db.users.updateOne({name:'John Castle'}, {$set: {age: 18}})
+
+db.users.find({$and: [{name:'John Castle'}, {age: 33}]})
+
+db.users.find({$or: [{name: 'John Castle'}, {age: 25}]})
+
+db.users.updateMany({},
+    {
+    $set:{street: 'Times Square', number: 100, city: 'New York', state: 'New York'}
+})
+
+db.users.updateMany({$or: [{name:'John Marston'}, {name:'Jane Jefferson'}]},
+    {
+        $set:{street: 'Melrose Ave', number: 25, city: 'Los Angeles', state: 'California'}
+    }
+)
+
+db.users.updateOne({name: 'Daniel'}, {$set: {street: 'Westheimer Road', number: 37, city: 'Houston', state: 'Texas'}})
+
+db.users.find({city: {$in: ["Los Angeles", "New York"]}})
+
+db.users.find({city: {$in: ["Los Angeles", "Houston"]}})
+
+db.users.find({city: {$nin: ["Los Angeles", "Houston"]}})
